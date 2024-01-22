@@ -1,7 +1,6 @@
 import codecs
 from random import randint
 from sqlite3 import IntegrityError
-
 from kavenegar import KavenegarAPI
 from rest_framework import status
 from rest_framework.response import Response
