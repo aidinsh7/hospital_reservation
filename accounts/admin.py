@@ -4,9 +4,11 @@ from .models import UserModel,OtpModel
 
 @admin.register(UserModel)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('username','phone_number')
-    list_filter = ('username','phone_number')
-
+    list_display = ('username','phone_number','is_doctor','is_superuser','code_meli')
+    list_filter = ('username','phone_number','is_doctor')
+    
+    def view_doctors(self, obj):
+        return obj.is_doctor ==True
 
 
 
