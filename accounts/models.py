@@ -32,7 +32,17 @@ class UserManager(auth_models.BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+    
 
+class Doctor_specialty(models.Model):
+    class Meta:
+        verbose_name = 'تخصص دکتر'
+        verbose_name_plural = 'تخصص دکتر'
+    name = models.CharField(max_length=200,verbose_name='تخصص')
+    sub = models.ForeignKey('self',on_delete=models.CASCADE, null=True, blank=True,verbose_name='زیر مجموعه')
+    is_sub = models.BooleanField(default=False)
+    
+    
 
 class UserModel(auth_models.AbstractUser):
     class Meta:
@@ -45,6 +55,7 @@ class UserModel(auth_models.AbstractUser):
     phone_number = models.CharField(max_length=12, unique=True,verbose_name= 'شماره همراه')
     password = models.CharField(max_length=255, null=True,verbose_name='رمز')
     is_doctor = models.BooleanField(default=False)
+    major = models.ForeignKey(Doctor_specialty,on_delete=models.CASCADE,null=True,blank=True,verbose_name='تخصص دکتر')
     objects = UserManager()
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['username','code_meli']

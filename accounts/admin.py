@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserModel,OtpModel
+from .models import UserModel,OtpModel,Doctor_specialty
 # Register your models here.
 
 @admin.register(UserModel)
@@ -15,3 +15,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(OtpModel)
 class OtpCode(admin.ModelAdmin):
     list_display = ('phone_number','otpCode')
+
+@admin.register(Doctor_specialty)
+class Doctor_specialty_Admin(admin.ModelAdmin):
+    list_display = ('name',)
